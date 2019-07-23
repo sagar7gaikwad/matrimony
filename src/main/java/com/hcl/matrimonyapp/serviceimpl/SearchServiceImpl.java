@@ -22,7 +22,7 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<UserProfile> searchProfiles( UserSearchDTO userRequest) throws ApplicationException{
-		List<UserProfile> userList = new ArrayList();
+		List<UserProfile> userList = new ArrayList<>();
 
 		if (!StringUtils.isEmpty(userRequest.getUserId())) {
 			Optional<UserProfile> profile = userProfileRepository.findByUserId(userRequest.getUserId());
