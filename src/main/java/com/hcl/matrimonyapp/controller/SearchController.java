@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
 import com.hcl.matrimonyapp.model.UserSearchDTO;
-import com.hcl.matrimonyapp.service.SearchService;
+import com.hcl.matrimonyapp.serviceImpl.SearchServiceImpl;
 
 @Controller
 public class SearchController {
 	
 	@Autowired
-	SearchService  searchService;
+	SearchServiceImpl  searchService;
 	
 	@GetMapping("/profiles")
-	public ResponseEntity<List<UserProfile>> searchProfile(@RequestParam Long userId, @RequestParam UserSearchDTO userSearchDTO ) throws ApplicationException {
-		return new ResponseEntity<>(searchService.searchProfiles(userId, userSearchDTO),
+	public ResponseEntity<List<UserProfile>> searchProfile(@RequestParam Long userId, @RequestParam UserSearchDTO userRequest ) throws ApplicationException {
+		return new ResponseEntity<>(searchService.searchProfiles(userId, userRequest),
 				HttpStatus.OK);
 	}
 }

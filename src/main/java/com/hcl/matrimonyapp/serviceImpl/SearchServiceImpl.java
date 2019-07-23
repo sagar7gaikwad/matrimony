@@ -1,5 +1,8 @@
-package com.hcl.matrimonyapp.service;
+package com.hcl.matrimonyapp.serviceImpl;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,22 +16,23 @@ import com.hcl.matrimonyapp.model.UserSearchDTO;
 import com.hcl.matrimonyapp.repository.SearchRepository;
 
 @Service
-public class SearchService {
+public class SearchServiceImpl {
 
 	@Autowired
 	SearchRepository searchRepository;
 	
-	public List<UserProfile> searchProfiles(Long userId, UserProfileDTO userProfileDTO){
+	List<UserProfile> users=new ArrayList();
+	
+	public List<UserProfile> searchProfiles(Long userId, UserProfileDTO userRequest){
 		if (null != userId) {
 			Optional<UserProfile> profile= searchRepository.findByUserId(userId);
-			if (profile.isPresent()) {
-				return profile.get();
+			if (profile.isPresent()) 
+				users.add(profile);
+				return users;
 			}
-			
-		}
 		else 
 		{
-			
+			Period diff = Period.between(userRequest.getDob(), LocalDate.now());
 			return searchRepository.findByCurrentAddrAndNativeAddrAndEducationAndOccupationAndGender();
         }
          
