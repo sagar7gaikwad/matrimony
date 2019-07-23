@@ -18,18 +18,21 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-	
+
 	@PostMapping("")
-	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO){
-		
+	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
+
 		UserProfileDTO userProfileDTO = null;
-		if(isNullOrEmpty(loginDTO) || isNullOrEmpty(loginDTO.getUserId()) || isNullOrEmpty(loginDTO.getPassword()))
-			return new ResponseEntity<>("Please enter valid credentials.", HttpStatus.BAD_REQUEST);
-		userProfileDTO = loginService.getUserProfile(loginDTO.getUserId(), loginDTO.getPassword());
-		return new ResponseEntity<>(userProfileDTO, HttpStatus.OK);
+		if (!isNullOrEmpty(loginDTO) && !isNullOrEmpty(loginDTO.getUserId())
+				&& !isNullOrEmpty(loginDTO.getPassword())) {
+			userProfileDTO = loginService.getUserProfile(loginDTO.getUserId(), loginDTO.getPassword());
+			if (!isNullOrEmpty(userProfileDTO))
+				return new ResponseEntity<>(userProfileDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Please enter valid credentials.", HttpStatus.BAD_REQUEST);
 	}
-	
+
 	private boolean isNullOrEmpty(Object object) {
-		return (null == object || "".equals(object));
+		return (null == object || " ".equals(object));
 	}
 }

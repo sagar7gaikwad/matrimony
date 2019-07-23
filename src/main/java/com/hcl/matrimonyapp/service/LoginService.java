@@ -6,19 +6,21 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.entity.UserProfile;
-import com.hcl.matrimonyapp.repository.LoginRepository;
+import com.hcl.matrimonyapp.repository.UserProfileRepository;
 
 @Service
 public class LoginService {
 
 	@Autowired
-	LoginRepository loginRepository;
-	
+	UserProfileRepository userProfileRepository;
+
 	public UserProfileDTO getUserProfile(Long userId, String password) {
-		UserProfile userProfile = loginRepository.getUserProfile(userId, password);
-		UserProfileDTO userProfileDTO = new UserProfileDTO();
-		BeanUtils.copyProperties(userProfile, userProfileDTO);
-		
+		UserProfile userProfile = userProfileRepository.getUserProfile(userId, password);
+		UserProfileDTO userProfileDTO = null;
+		if (null != userProfile) {
+			userProfileDTO = new UserProfileDTO();
+			BeanUtils.copyProperties(userProfile, userProfileDTO);
+		}
 		return userProfileDTO;
 	}
 }
