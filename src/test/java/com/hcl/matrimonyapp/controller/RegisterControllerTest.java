@@ -1,5 +1,8 @@
 package com.hcl.matrimonyapp.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.time.LocalDate;
 
 import org.junit.Before;
@@ -9,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.exception.ApplicationException;
@@ -33,10 +37,10 @@ public class RegisterControllerTest {
 	
 	@Test
 	public void testRegisterUser() throws ApplicationException {
-		//Mockito.when(mortgageServiceMock.getOffers(userRequest)).thenReturn(offerList);
-		//ResponseEntity<?> calculateMortgage = mortgageController.calculateMortgage(userRequest);
 		Mockito.when(registerServiceImplMock.registerUser(Mockito.any(UserProfileDTO.class))).thenReturn("");
-		registerController.registerUser(userProfileDTO);
+		ResponseEntity<Object> registerUser = registerController.registerUser(userProfileDTO);
+		assertNotNull(registerUser);
+		assertEquals(200, registerUser.getStatusCodeValue());
 		
 	}
 	
