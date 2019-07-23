@@ -38,7 +38,10 @@ public class RegisterController {
 	 */
 	private void validateUser(UserProfileDTO userProfileDTO) throws ApplicationException {
 		if (StringUtils.isEmpty(userProfileDTO.getCurrentAddr())) {
-			throw new ApplicationException(ERROR_MSG + "CurrentAddr");
+			throw new ApplicationException(ERROR_MSG + "Current Address");
+		}
+		if (StringUtils.isEmpty(userProfileDTO.getNavtiveAddr())) {
+			throw new ApplicationException(ERROR_MSG + "Navtive Address");
 		}
 		if (StringUtils.isEmpty(userProfileDTO.getDob())) {
 			throw new ApplicationException(ERROR_MSG + "Date of Birth");
