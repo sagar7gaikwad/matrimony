@@ -9,7 +9,7 @@ public class UserProfileDTO {
 
 	private String name;
 
-	private long age;
+	private Long age;
 
 	private String occupation;
 
@@ -17,9 +17,9 @@ public class UserProfileDTO {
 
 	private String complexion;
 
-	private double height;
+	private Double height;
 
-	private double weight;
+	private Double weight;
 
 	private String horoscopeDetails;
 

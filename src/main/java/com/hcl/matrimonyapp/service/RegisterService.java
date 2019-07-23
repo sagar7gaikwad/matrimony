@@ -1,5 +1,5 @@
 package com.hcl.matrimonyapp.service;
 
-public class RegisterService {
+public interface RegisterService {
 
 }
