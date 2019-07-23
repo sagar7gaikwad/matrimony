@@ -8,4 +8,5 @@ import com.hcl.matrimonyapp.entity.Favourites;
 @Repository
 public interface FavouritesRepository extends JpaRepository<Favourites, Long> {
 
+	
 }
