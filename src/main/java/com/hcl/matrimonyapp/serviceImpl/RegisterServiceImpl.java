@@ -24,5 +24,7 @@ public class RegisterServiceImpl implements RegisterService {
 	//	 return "Welcome to HCL Matrimony...\n Hello " +userName+ ", you are succesfully registerd to HCL Matrimony.";
 	return null;
 	}
+	
+	
 
 }

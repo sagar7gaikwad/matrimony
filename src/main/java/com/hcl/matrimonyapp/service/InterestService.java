@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hcl.matrimonyapp.dto.FavouritesDTO;
 import com.hcl.matrimonyapp.entity.Favourites;
@@ -41,6 +43,15 @@ public class InterestService {
 
 		}
 
+	}
+
+	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
+		List<UserProfile> likedMeUserList = userProfileRepository.getByFavMeId(userId);
+		return likedMeUserList;
+	}
+	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
+		List<UserProfile> likedMeUserList = userProfileRepository.getByMyFavId(userId);
+		return likedMeUserList;
 	}
 
 }
