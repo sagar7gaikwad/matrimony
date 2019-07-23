@@ -1,15 +1,13 @@
 package com.hcl.matrimonyapp.service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hcl.matrimonyapp.dto.FavouritesDTO;
 import com.hcl.matrimonyapp.entity.Favourites;
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.repository.FavouritesRepository;
@@ -43,6 +41,13 @@ public class InterestService {
 		 * }
 		 */
 
+	}
+
+	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
+		return userProfileRepository.getByFavMeId(userId);
+	}
+	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
+		return userProfileRepository.getByMyFavId(userId);
 	}
 
 }

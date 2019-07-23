@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.CORBA.portable.ApplicationException;
+
+import org.hibernate.exception.ConstraintViolationException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +38,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		ResponseDTO error = new ResponseDTO(ex.getMessage(), HttpStatus.BAD_REQUEST, null);
 		return new ResponseEntity<>(error, error.getHttpStatus());
 	}
-
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public final ResponseEntity<Object> handleAllExceptions(ConstraintViolationException ex, WebRequest request) {
+		ResponseDTO error = new ResponseDTO("Username should be unique", HttpStatus.BAD_REQUEST, null);
+		return new ResponseEntity<>(error, error.getHttpStatus());
+	}
 }

@@ -70,7 +70,7 @@ public class UserProfile implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "username")
+	@Column(name = "username", unique = true)
 	private String username;
 
 	@OneToMany(mappedBy = "myUserProfile", cascade = CascadeType.ALL)
