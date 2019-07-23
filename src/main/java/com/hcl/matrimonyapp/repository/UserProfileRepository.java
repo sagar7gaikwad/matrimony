@@ -19,6 +19,9 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 	
 	@Query("SELECT u FROM  UserProfile u INNER JOIN Favourites f ON u.userId = f.likedUserProfile WHERE f.myUserProfile.id = :myFavId")
 	List<UserProfile> getByMyFavId(@Param(value="myFavId") long myFavId);
+	
+	@Query(value = "select * from user_profile where user_id = :userId and password = :password",nativeQuery = true)
+	public UserProfile getUserProfile(Long userId, String password);
 
 	UserProfile findByUserId(Long loggedUserId);
 
