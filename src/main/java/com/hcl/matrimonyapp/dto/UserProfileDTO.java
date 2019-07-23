@@ -1,28 +1,21 @@
-package com.hcl.matrimonyapp.entity;
+package com.hcl.matrimonyapp.dto;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.hcl.matrimonyapp.entity.Favourites;
 
 import lombok.Data;
 
 @Data
-@Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
-public class UserProfile implements Serializable {
-
-	private static final long serialVersionUID = -1309879943918759004L;
+public class UserProfileDTO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
