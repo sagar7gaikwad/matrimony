@@ -27,6 +27,7 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 
 	//UserProfile findByUserId(Long loggedUserId);
 
+
     public Optional<UserProfile> findByUserId(Long userId);
 	
 	public List<UserProfile> findByCurrentAddrAndNativeAddrAndEducationAndOccupationAndGender(String currentAddr,String nativeAddr,String education, String occuption, String gender);
@@ -36,6 +37,5 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 	
 	@Query("SELECT u FROM UserProfile u WHERE u.height <= :fromHeight and u.height >= :toHeight")
 	public List<UserProfile> findByHeightRangeBetween(Double fromHeight, Double toHeight);
-	
 	
 }
