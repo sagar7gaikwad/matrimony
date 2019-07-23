@@ -12,6 +12,11 @@ import com.hcl.matrimonyapp.dto.LoginDTO;
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.service.LoginService;
 
+
+/**
+ * @author Administrator
+ *
+ */
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -19,6 +24,10 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 
+	/**
+	 * @param loginDTO
+	 * @return object of ResponseEntity
+	 */
 	@PostMapping("")
 	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
 
