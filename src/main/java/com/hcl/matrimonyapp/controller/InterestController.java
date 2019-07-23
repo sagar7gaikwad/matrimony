@@ -19,7 +19,7 @@ public class InterestController {
 	public ResponseEntity<Object> like(@RequestParam("myUserProfile") Long loggedUserId, 
 			@RequestParam("likedUserProfile") Long likedUserId){
 		interestService.validateUserIdAndaddLike(loggedUserId,likedUserId);
-		return new ResponseEntity<>("You Showed intrest in "+"!!!",HttpStatus.OK);
+		return new ResponseEntity<>("You Showed intrest in "+likedUserId+"!!!",HttpStatus.OK);
 	}
 	
 }
