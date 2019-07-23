@@ -34,12 +34,15 @@ public class InterestService {
 		UserProfile loggedUser = null;
 		UserProfile likedUser = null;
 
-		if (loggedUserOp.isPresent()) {
-			loggedUser = loggedUserOp.get();
+		if (!loggedUserOp.isPresent()) {
+			throw new ApplicationException("Logged user not present");
 		}
-		if (likedUserOp.isPresent()) {
-			likedUser = likedUserOp.get();
+		loggedUser = loggedUserOp.get();
+		
+		if (!likedUserOp.isPresent()) {
+			throw new ApplicationException("user that you want to like is not present");
 		}
+		likedUser = likedUserOp.get();
 
 		List<Favourites> fev = loggedUser.getMyFavList();
 		for (Favourites favourites : fev) {
