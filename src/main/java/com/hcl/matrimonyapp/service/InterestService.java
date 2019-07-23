@@ -2,6 +2,7 @@ package com.hcl.matrimonyapp.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,35 +29,43 @@ public class InterestService {
 
 	public void validateUserIdAndaddLike(Long loggedUserId, Long likedUserId) throws ApplicationException {
 
-		UserProfile loggedUser = userProfileRepository.findByUserId(loggedUserId);
-		//System.out.println(loggedUser);
-		UserProfile likedUser = userProfileRepository.findByUserId(likedUserId);
-		//System.out.println(likedUser);
+		Optional<UserProfile> loggedUserOp = userProfileRepository.findById(loggedUserId);
+
+		Optional<UserProfile> likedUserOp = userProfileRepository.findById(likedUserId);
+		UserProfile loggedUser = null;
+		UserProfile likedUser = null;
+
+		if (loggedUserOp.isPresent()) {
+			loggedUser = loggedUserOp.get();
+		}
+		if (likedUserOp.isPresent()) {
+			likedUser = likedUserOp.get();
+		}
+
+		// System.out.println(likedUser);
 		List<Favourites> fev = loggedUser.getMyFavList();
-			for (Favourites favourites : fev) {
-				if (favourites.getMyUserProfile().equals(loggedUser.getUserId()) == favourites.getLikedUserProfile()
-						.equals(likedUser.getUserId())) {
-					throw new ApplicationException("you Already Liked this Profile");
-				}
-
-				else if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser))) {
-					favourites = new Favourites();
-					favourites.setDate(LocalDate.now());
-					favourites.setMyUserProfile(loggedUser);
-					favourites.setLikedUserProfile(likedUser);
-					favouritesRepository.save(favourites);
-
-				}
-
+		for (Favourites favourites : fev) {
+			if (favourites.getLikedUserProfile().getUserId().equals(likedUser.getUserId())) {
+				throw new ApplicationException("you Already Liked this Profile");
 			}
 
 		}
+		if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser))) {
+			favourites = new Favourites();
+			favourites.setDate(LocalDate.now());
+			favourites.setMyUserProfile(loggedUser);
+			favourites.setLikedUserProfile(likedUser);
+			favouritesRepository.save(favourites);
 
+		}
+
+	}
 
 	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
 		List<UserProfile> likedMeUserList = userProfileRepository.getByFavMeId(userId);
 		return likedMeUserList;
 	}
+
 	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
 		List<UserProfile> likedMeUserList = userProfileRepository.getByMyFavId(userId);
 		return likedMeUserList;
