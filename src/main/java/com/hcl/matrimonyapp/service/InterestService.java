@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,13 +61,11 @@ public class InterestService {
 	}
 
 	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
-		List<UserProfile> likedMeUserList = userProfileRepository.getByFavMeId(userId);
-		return likedMeUserList;
+		return userProfileRepository.getByFavMeId(userId);
 	}
 
 	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
-		List<UserProfile> likedMeUserList = userProfileRepository.getByMyFavId(userId);
-		return likedMeUserList;
+		return userProfileRepository.getByMyFavId(userId);
 	}
 
 }
