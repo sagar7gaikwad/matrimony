@@ -9,17 +9,15 @@ public class UserProfileDTO {
 
 	private String name;
 
-	private long age;
-
 	private String occupation;
 
 	private String gender;
 
 	private String complexion;
 
-	private double height;
+	private Double height;
 
-	private double weight;
+	private Double weight;
 
 	private String horoscopeDetails;
 
@@ -41,7 +39,7 @@ public class UserProfileDTO {
 
 	@Override
 	public String toString() {
-		return "UserProfileDTO [name=" + name + ", age=" + age + ", occupation=" + occupation + ", gender=" + gender
+		return "UserProfileDTO [name=" + name + ", occupation=" + occupation + ", gender=" + gender
 				+ ", complexion=" + complexion + ", height=" + height + ", weight=" + weight + ", horoscopeDetails="
 				+ horoscopeDetails + ", dob=" + dob + ", caste=" + caste + ", education=" + education + ", bloodGrp="
 				+ bloodGrp + ", username=" + username + ", currentAddr=" + currentAddr + ", navtiveAddr=" + navtiveAddr

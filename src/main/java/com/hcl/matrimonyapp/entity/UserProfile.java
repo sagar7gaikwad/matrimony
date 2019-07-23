@@ -32,9 +32,6 @@ public class UserProfile implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "age")
-	private Long age;
-
 	@Column(name = "occupation")
 	private String occupation;
 
