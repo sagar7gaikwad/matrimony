@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.exception.ApplicationException;
+import com.hcl.matrimonyapp.serviceimpl.RegisterServiceImpl;
 
 @RestController
 public class RegisterController {
