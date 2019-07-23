@@ -28,18 +28,20 @@ public class InterestService {
 
 	public void validateUserIdAndaddLike(Long loggedUserId, Long likedUserId) {
 
-		UserProfile loggedUser = userProfileRepository.findByUserId(loggedUserId);
-		UserProfile likedUser = userProfileRepository.findByUserId(likedUserId);
-
-		if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser))) {
-
-			favourites = new Favourites();
-			favourites.setDate(LocalDate.now());
-			favourites.setMyUserProfile(loggedUser);
-			favourites.setLikedUserProfile(likedUser);
-			favouritesRepository.save(favourites);
-
-		}
+		/*
+		 * UserProfile loggedUser = userProfileRepository.findByUserId(loggedUserId);
+		 * UserProfile likedUser = userProfileRepository.findByUserId(likedUserId);
+		 * 
+		 * if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser)))
+		 * {
+		 * 
+		 * favourites = new Favourites(); favourites.setDate(LocalDate.now());
+		 * favourites.setMyUserProfile(loggedUser);
+		 * favourites.setLikedUserProfile(likedUser);
+		 * favouritesRepository.save(favourites);
+		 * 
+		 * }
+		 */
 
 	}
 

@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserSearchDTO {
 	
+	private Long userId;
+	
 	private String currentAddr;
 	
 	private String nativeAddr;
@@ -22,9 +24,9 @@ public class UserSearchDTO {
 	
 	private String gender;
 	
-	private Long fromAge;
+	private Integer fromAge;
 	
-	private Long toAge;
+	private Integer toAge;
 	
 	private Double fromHeight;
 	
