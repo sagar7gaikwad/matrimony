@@ -3,6 +3,7 @@ package com.hcl.matrimonyapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,11 @@ public class InterestController {
 
 	@Autowired
 	InterestService interestService;
-	public ResponseEntity<Object> like(@RequestParam Integer loggedUserId, @RequestParam Integer likedUserId){
+	
+	@PostMapping(value = "/like")
+	public ResponseEntity<Object> like(@RequestParam("myUserProfile") Long loggedUserId, 
+			@RequestParam("likedUserProfile") Long likedUserId){
+		interestService.validateUserIdAndaddLike(loggedUserId,likedUserId);
 		return new ResponseEntity<>("You Showed intrest in "+"!!!",HttpStatus.OK);
 	}
 	
