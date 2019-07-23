@@ -20,9 +20,8 @@ public class RegisterServiceImpl implements RegisterService {
 	public String registerUser(UserProfileDTO userProfileDTO) {
 		UserProfile userProfile = new UserProfile();
 		BeanUtils.copyProperties(userProfileDTO, userProfile);
-		UserProfile save = userProfileRepository.save(userProfile);
-		
-		return null;
+		 String userName = userProfileRepository.save(userProfile).getName();
+		 return "Welcome to HCL Matrimony...\n Hello " +userName+ ", you are succesfully registerd to HCL Matrimony.";
 	}
 
 }

@@ -20,6 +20,7 @@ public class RegisterController {
 	
 	@RequestMapping("/register")
 	public ResponseEntity<Object> registerUser(@Valid @RequestBody UserProfileDTO userProfileDTO){
+		RegisterServiceImpl.registerUser(userProfileDTO);
 		return new ResponseEntity<>(RegisterServiceImpl.registerUser(userProfileDTO), HttpStatus.OK);
 	}
 }
