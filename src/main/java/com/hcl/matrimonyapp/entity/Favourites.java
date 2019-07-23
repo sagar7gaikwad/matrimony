@@ -23,7 +23,7 @@ public class Favourites {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "fav_Id")
-	private long favId;
+	private Long favId;
 	
 	@ManyToOne
 	@JoinColumn(name = "my_fav_id")
