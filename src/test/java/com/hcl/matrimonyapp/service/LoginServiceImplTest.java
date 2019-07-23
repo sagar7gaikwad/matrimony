@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.repository.UserProfileRepository;
-import com.hcl.matrimonyapp.serviceImpl.LoginServiceImpl;
+import com.hcl.matrimonyapp.serviceimpl.LoginServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginServiceImplTest {

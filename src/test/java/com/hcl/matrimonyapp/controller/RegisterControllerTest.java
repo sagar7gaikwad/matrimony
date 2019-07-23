@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
-import com.hcl.matrimonyapp.serviceImpl.RegisterServiceImpl;
+import com.hcl.matrimonyapp.serviceimpl.RegisterServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterControllerTest {

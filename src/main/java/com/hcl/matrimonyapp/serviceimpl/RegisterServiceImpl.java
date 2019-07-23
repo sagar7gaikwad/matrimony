@@ -1,4 +1,4 @@
-package com.hcl.matrimonyapp.serviceImpl;
+package com.hcl.matrimonyapp.serviceimpl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
