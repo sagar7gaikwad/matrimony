@@ -1,6 +1,7 @@
 package com.hcl.matrimonyapp.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.entity.Favourites;
 import com.hcl.matrimonyapp.entity.UserProfile;
+import com.hcl.matrimonyapp.exception.ApplicationException;
 import com.hcl.matrimonyapp.repository.FavouritesRepository;
 import com.hcl.matrimonyapp.repository.UserProfileRepository;
 
@@ -41,11 +44,59 @@ public class InterestService {
 
 	}
 
-	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
-		return userProfileRepository.getByFavMeId(userId);
+	public List<UserProfileDTO> likedMe(@RequestParam("userId") Long userId) {
+		
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		List<UserProfile> userList = userProfileRepository.getByFavMeId(userId);
+		if(userList == null ) {
+			return userRespList;
+		}
+		userList.forEach(u ->{
+			UserProfileDTO userDTO = new UserProfileDTO();
+			userDTO.setUserId(u.getUserId());
+			userDTO.setName(u.getName());
+			userDTO.setBloodGrp(u.getBloodGrp());
+			userDTO.setCaste(u.getCaste());
+			userDTO.setComplexion(u.getComplexion());
+			userDTO.setCurrentAddr(u.getCurrentAddr());
+			userDTO.setDob(u.getDob());
+			userDTO.setEducation(u.getEducation());
+			userDTO.setGender(u.getGender());
+			userDTO.setHeight(u.getHeight());
+			userDTO.setWeight(u.getWeight());
+			userDTO.setNavtiveAddr(u.getNavtiveAddr());
+			userDTO.setOccupation(u.getOccupation());
+			userRespList.add(userDTO);
+			
+		});
+		return userRespList;
 	}
-	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
-		return userProfileRepository.getByMyFavId(userId);
+	public List<UserProfileDTO>  likedByMe(@RequestParam("userId") Long userId) {
+		
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		List<UserProfile> userList = userProfileRepository.getByMyFavId(userId);
+		if(userList == null ) {
+			return userRespList;
+		}
+		userList.forEach(u ->{
+			UserProfileDTO userDTO = new UserProfileDTO();
+			userDTO.setUserId(u.getUserId());
+			userDTO.setName(u.getName());
+			userDTO.setBloodGrp(u.getBloodGrp());
+			userDTO.setCaste(u.getCaste());
+			userDTO.setComplexion(u.getComplexion());
+			userDTO.setCurrentAddr(u.getCurrentAddr());
+			userDTO.setDob(u.getDob());
+			userDTO.setEducation(u.getEducation());
+			userDTO.setGender(u.getGender());
+			userDTO.setHeight(u.getHeight());
+			userDTO.setWeight(u.getWeight());
+			userDTO.setNavtiveAddr(u.getNavtiveAddr());
+			userDTO.setOccupation(u.getOccupation());
+			userRespList.add(userDTO);
+			
+		});
+		return userRespList;
 	}
 
 }
