@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Formula;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -52,6 +54,9 @@ public class UserProfile implements Serializable {
 
 	@Column(name = "dob")
 	private LocalDate dob;
+	
+    @Column(name = "age")
+	private Integer age;
 
 	@Column(name = "caste")
 	private String caste;
@@ -78,6 +83,6 @@ public class UserProfile implements Serializable {
 	private String currentAddr;
 
 	@Column(name = "native_addr")
-	private String navtiveAddr;
+	private String nativeAddr;
 
 }
