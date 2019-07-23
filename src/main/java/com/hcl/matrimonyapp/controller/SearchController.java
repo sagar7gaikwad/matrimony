@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
 import com.hcl.matrimonyapp.model.UserSearchDTO;
-import com.hcl.matrimonyapp.serviceImpl.SearchServiceImpl;
+import com.hcl.matrimonyapp.serviceimpl.SearchServiceImpl;
 
 @Controller
 public class SearchController {

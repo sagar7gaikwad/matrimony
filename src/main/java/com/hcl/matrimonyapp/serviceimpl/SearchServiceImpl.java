@@ -1,4 +1,4 @@
-package com.hcl.matrimonyapp.serviceImpl;
+package com.hcl.matrimonyapp.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.List;
