@@ -81,6 +81,6 @@ public class UserProfile implements Serializable {
 	private String currentAddr;
 
 	@Column(name = "native_addr")
-	private String navtiveAddr;
+	private String nativeAddr;
 
 }

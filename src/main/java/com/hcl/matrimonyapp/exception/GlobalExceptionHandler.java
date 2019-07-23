@@ -3,6 +3,7 @@ package com.hcl.matrimonyapp.exception;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
