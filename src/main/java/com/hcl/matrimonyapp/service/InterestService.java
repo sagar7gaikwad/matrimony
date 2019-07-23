@@ -24,7 +24,7 @@ public class InterestService {
 	@Autowired
 	UserProfileRepository userProfileRepository;
 
-	Favourites favourites;
+	Favourites favouritess;
 
 	public void validateUserIdAndaddLike(Long loggedUserId, Long likedUserId) throws ApplicationException {
 
@@ -41,7 +41,6 @@ public class InterestService {
 			likedUser = likedUserOp.get();
 		}
 
-		// System.out.println(likedUser);
 		List<Favourites> fev = loggedUser.getMyFavList();
 		for (Favourites favourites : fev) {
 			if (favourites.getLikedUserProfile().getUserId().equals(likedUser.getUserId())) {
@@ -50,11 +49,11 @@ public class InterestService {
 
 		}
 		if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser))) {
-			favourites = new Favourites();
-			favourites.setDate(LocalDate.now());
-			favourites.setMyUserProfile(loggedUser);
-			favourites.setLikedUserProfile(likedUser);
-			favouritesRepository.save(favourites);
+			favouritess = new Favourites();
+			favouritess.setDate(LocalDate.now());
+			favouritess.setMyUserProfile(loggedUser);
+			favouritess.setLikedUserProfile(likedUser);
+			favouritesRepository.save(favouritess);
 
 		}
 

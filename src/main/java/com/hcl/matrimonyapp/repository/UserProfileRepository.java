@@ -23,7 +23,6 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 	@Query(value = "select * from user_profile where user_id = :userId and password = :password",nativeQuery = true)
 	public UserProfile getUserProfile(Long userId, String password);
 
-	//UserProfile findByUserId(Long loggedUserId);
 
 	
     
