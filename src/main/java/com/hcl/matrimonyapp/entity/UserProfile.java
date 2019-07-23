@@ -79,6 +79,11 @@ public class UserProfile implements Serializable{
 	@OneToMany(mappedBy = "likedUserProfile", cascade = CascadeType.ALL)
 	private List<Favourites> favMeList;
 	
+	@Column(name="current_addr")
+	private String currentAddr;
+	
+	@Column(name="native_addr")
+	private String navtiveAddr;
 	
 	
 	

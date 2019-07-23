@@ -26,11 +26,11 @@ public class Favourites {
 	private long favId;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "my_fav_id")
 	private UserProfile  myUserProfile;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "fav_me_id")
 	private UserProfile likedUserProfile;
 	
 	@Column(name="date")
