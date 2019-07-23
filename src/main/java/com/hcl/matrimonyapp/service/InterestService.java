@@ -3,6 +3,7 @@ package com.hcl.matrimonyapp.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,33 +26,49 @@ public class InterestService {
 	@Autowired
 	UserProfileRepository userProfileRepository;
 
-	Favourites favourites;
+	Favourites favouritess;
 
-	public void validateUserIdAndaddLike(Long loggedUserId, Long likedUserId) {
+	public void validateUserIdAndaddLike(Long loggedUserId, Long likedUserId) throws ApplicationException {
 
-		UserProfile loggedUser = userProfileRepository.findByUserId(loggedUserId);
-		UserProfile likedUser = userProfileRepository.findByUserId(likedUserId);
+		Optional<UserProfile> loggedUserOp = userProfileRepository.findById(loggedUserId);
 
+		Optional<UserProfile> likedUserOp = userProfileRepository.findById(likedUserId);
+		UserProfile loggedUser = null;
+		UserProfile likedUser = null;
+
+		if (loggedUserOp.isPresent()) {
+			loggedUser = loggedUserOp.get();
+		}
+		if (likedUserOp.isPresent()) {
+			likedUser = likedUserOp.get();
+		}
+
+		List<Favourites> fev = loggedUser.getMyFavList();
+		for (Favourites favourites : fev) {
+			if (favourites.getLikedUserProfile().getUserId().equals(likedUser.getUserId())) {
+				throw new ApplicationException("you Already Liked this Profile");
+			}
+
+		}
 		if ((!ObjectUtils.isEmpty(loggedUser)) && (!ObjectUtils.isEmpty(likedUser))) {
-
-			favourites = new Favourites();
-			favourites.setDate(LocalDate.now());
-			favourites.setMyUserProfile(loggedUser);
-			favourites.setLikedUserProfile(likedUser);
-			favouritesRepository.save(favourites);
+			favouritess = new Favourites();
+			favouritess.setDate(LocalDate.now());
+			favouritess.setMyUserProfile(loggedUser);
+			favouritess.setLikedUserProfile(likedUser);
+			favouritesRepository.save(favouritess);
 
 		}
 
 	}
 
 	public List<UserProfileDTO> likedMe(@RequestParam("userId") Long userId) {
-		
+
 		List<UserProfileDTO> userRespList = new ArrayList<>();
 		List<UserProfile> userList = userProfileRepository.getByFavMeId(userId);
-		if(userList == null ) {
+		if (userList == null) {
 			return userRespList;
 		}
-		userList.forEach(u ->{
+		userList.forEach(u -> {
 			UserProfileDTO userDTO = new UserProfileDTO();
 			userDTO.setUserId(u.getUserId());
 			userDTO.setName(u.getName());
@@ -64,39 +81,39 @@ public class InterestService {
 			userDTO.setGender(u.getGender());
 			userDTO.setHeight(u.getHeight());
 			userDTO.setWeight(u.getWeight());
-			userDTO.setNavtiveAddr(u.getNavtiveAddr());
+			userDTO.setNavtiveAddr(u.getNativeAddr());
 			userDTO.setOccupation(u.getOccupation());
 			userRespList.add(userDTO);
-			
-		});
-		return userRespList;
-	}
-	public List<UserProfileDTO>  likedByMe(@RequestParam("userId") Long userId) {
-		
-		List<UserProfileDTO> userRespList = new ArrayList<>();
-		List<UserProfile> userList = userProfileRepository.getByMyFavId(userId);
-		if(userList == null ) {
-			return userRespList;
-		}
-		userList.forEach(u ->{
-			UserProfileDTO userDTO = new UserProfileDTO();
-			userDTO.setUserId(u.getUserId());
-			userDTO.setName(u.getName());
-			userDTO.setBloodGrp(u.getBloodGrp());
-			userDTO.setCaste(u.getCaste());
-			userDTO.setComplexion(u.getComplexion());
-			userDTO.setCurrentAddr(u.getCurrentAddr());
-			userDTO.setDob(u.getDob());
-			userDTO.setEducation(u.getEducation());
-			userDTO.setGender(u.getGender());
-			userDTO.setHeight(u.getHeight());
-			userDTO.setWeight(u.getWeight());
-			userDTO.setNavtiveAddr(u.getNavtiveAddr());
-			userDTO.setOccupation(u.getOccupation());
-			userRespList.add(userDTO);
-			
+
 		});
 		return userRespList;
 	}
 
+	public List<UserProfileDTO> likedByMe(@RequestParam("userId") Long userId) {
+
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		List<UserProfile> userList = userProfileRepository.getByMyFavId(userId);
+		if (userList == null) {
+			return userRespList;
+		}
+		userList.forEach(u -> {
+			UserProfileDTO userDTO = new UserProfileDTO();
+			userDTO.setUserId(u.getUserId());
+			userDTO.setName(u.getName());
+			userDTO.setBloodGrp(u.getBloodGrp());
+			userDTO.setCaste(u.getCaste());
+			userDTO.setComplexion(u.getComplexion());
+			userDTO.setCurrentAddr(u.getCurrentAddr());
+			userDTO.setDob(u.getDob());
+			userDTO.setEducation(u.getEducation());
+			userDTO.setGender(u.getGender());
+			userDTO.setHeight(u.getHeight());
+			userDTO.setWeight(u.getWeight());
+			userDTO.setNavtiveAddr(u.getNativeAddr());
+			userDTO.setOccupation(u.getOccupation());
+			userRespList.add(userDTO);
+
+		});
+		return userRespList;
+	}
 }
