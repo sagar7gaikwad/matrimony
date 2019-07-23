@@ -27,13 +27,13 @@ public class UserProfile implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
-	private long userId;
+	private Long userId;
 
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "age")
-	private long age;
+	private Long age;
 
 	@Column(name = "occupation")
 	private String occupation;
@@ -45,10 +45,10 @@ public class UserProfile implements Serializable {
 	private String complexion;
 
 	@Column(name = "height")
-	private double height;
+	private Double height;
 
 	@Column(name = "weight")
-	private double weight;
+	private Double weight;
 
 	@Column(name = "horoscopeDetails")
 	private String horoscopeDetails;
@@ -71,11 +71,9 @@ public class UserProfile implements Serializable {
 	@Column(name = "username")
 	private String username;
 
-	// @Column(name = "my_fav_list")
 	@OneToMany(mappedBy = "myUserProfile", cascade = CascadeType.ALL)
 	private List<Favourites> myFavList;
 
-	// @Column(name = "fav_me_list")
 	@OneToMany(mappedBy = "likedUserProfile", cascade = CascadeType.ALL)
 	private List<Favourites> favMeList;
 
