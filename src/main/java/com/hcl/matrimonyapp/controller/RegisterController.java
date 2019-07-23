@@ -20,8 +20,8 @@ public class RegisterController {
 
 	/*
 	 * This method is used to register user to matrimony site
-	 * 
 	 * @param UserProfileDTO User Profile DTO
+	 * @throws ApplicationException
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Object> registerUser(@RequestBody UserProfileDTO userProfileDTO) throws ApplicationException {
@@ -29,7 +29,13 @@ public class RegisterController {
 		return new ResponseEntity<>(registerServiceImpl.registerUser(userProfileDTO), HttpStatus.OK);
 	}
 
+	/*
+	 * This method is used to validate incoming registration request
+	 * @param UserProfileDTO User Profile DTO
+	 * @throws ApplicationException
+	 */
 	private void validateUser(UserProfileDTO userProfileDTO) throws ApplicationException {
+		System.out.println("===inside validateuser");
 		if (StringUtils.isEmpty(userProfileDTO.getCurrentAddr())) {
 			throw new ApplicationException("Mandetory Element missing : " + "CurrentAddr");
 		}
