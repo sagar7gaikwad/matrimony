@@ -1,16 +1,11 @@
 package com.hcl.matrimonyapp.dto;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import com.hcl.matrimonyapp.entity.Favourites;
 
 import lombok.Data;
 
 @Data
 public class UserProfileDTO {
-
-	// private long userId;
 
 	private String name;
 
