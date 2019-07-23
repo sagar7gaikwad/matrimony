@@ -2,6 +2,8 @@ package com.hcl.matrimonyapp.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -29,6 +31,7 @@ public class UserProfileDTO {
 
 	private String bloodGrp;
 
+	@JsonIgnore
 	private String password;
 
 	private String username;
