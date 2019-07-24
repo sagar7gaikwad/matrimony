@@ -1,5 +1,7 @@
 package com.hcl.matrimonyapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ import com.hcl.matrimonyapp.service.LoginService;
 @RequestMapping("/login")
 public class LoginController {
 
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 	@Autowired
 	LoginService loginService;
 
@@ -33,13 +37,17 @@ public class LoginController {
 	@PostMapping("")
 	public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) throws ApplicationException {
 
+		logger.debug("Inside login method of Login controller.......");
 		UserProfileDTO userProfileDTO = null;
 		validate(loginDTO);
 		userProfileDTO = loginService.getUserProfile(loginDTO.getUserId(), loginDTO.getPassword());
-		if (null == userProfileDTO)
+		if (null == userProfileDTO) {
+			logger.debug("Invalid credentials are inserted........");
 			throw new ApplicationException("Please enter valid credentials.");
+		}
+		logger.debug("exiting from login method of Login controller.......");
 		return new ResponseEntity<>(userProfileDTO, HttpStatus.OK);
-		
+
 	}
 
 	private void validate(LoginDTO loginDTO) throws ApplicationException {
