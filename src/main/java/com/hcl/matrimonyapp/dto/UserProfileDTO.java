@@ -37,14 +37,14 @@ public class UserProfileDTO {
 
 	private String currentAddr;
 
-	private String navtiveAddr;
+	private String nativeAddr;
 
 	@Override
 	public String toString() {
 		return "UserProfileDTO [name=" + name + ", occupation=" + occupation + ", gender=" + gender
 				+ ", complexion=" + complexion + ", height=" + height + ", weight=" + weight + ", horoscopeDetails="
 				+ horoscopeDetails + ", dob=" + dob + ", caste=" + caste + ", education=" + education + ", bloodGrp="
-				+ bloodGrp + ", username=" + username + ", currentAddr=" + currentAddr + ", navtiveAddr=" + navtiveAddr
+				+ bloodGrp + ", username=" + username + ", currentAddr=" + currentAddr + ", navtiveAddr=" + nativeAddr
 				+ "]";
 	}
 

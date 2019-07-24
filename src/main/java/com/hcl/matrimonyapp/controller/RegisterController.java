@@ -40,7 +40,7 @@ public class RegisterController {
 		if (StringUtils.isEmpty(userProfileDTO.getCurrentAddr())) {
 			throw new ApplicationException(ERROR_MSG + "Current Address");
 		}
-		if (StringUtils.isEmpty(userProfileDTO.getNavtiveAddr())) {
+		if (StringUtils.isEmpty(userProfileDTO.getNativeAddr())) {
 			throw new ApplicationException(ERROR_MSG + "Navtive Address");
 		}
 		if (StringUtils.isEmpty(userProfileDTO.getDob())) {

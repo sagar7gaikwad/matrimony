@@ -107,7 +107,7 @@ public class InterestService {
 		userDTO.setGender(u.getGender());
 		userDTO.setHeight(u.getHeight());
 		userDTO.setWeight(u.getWeight());
-		userDTO.setNavtiveAddr(u.getNativeAddr());
+		userDTO.setNativeAddr(u.getNativeAddr());
 		userDTO.setOccupation(u.getOccupation());
 		return userDTO;
 		

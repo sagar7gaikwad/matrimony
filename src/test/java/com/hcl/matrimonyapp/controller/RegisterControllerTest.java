@@ -88,7 +88,7 @@ public class RegisterControllerTest {
 		validateMandetoryEleMissingResponse(registerController.registerUser(userProfileDTO8), "Username");
 
 		UserProfileDTO userProfileDTO9 = createUserDTO();
-		userProfileDTO9.setNavtiveAddr(null);
+		userProfileDTO9.setNativeAddr(null);
 		validateMandetoryEleMissingResponse(registerController.registerUser(userProfileDTO9), "Navtive Address");
 
 	}
@@ -112,7 +112,7 @@ public class RegisterControllerTest {
 		userProfileDTO.setHeight(5.4);
 		userProfileDTO.setHoroscopeDetails("capricorn");
 		userProfileDTO.setName("Shivanjali");
-		userProfileDTO.setNavtiveAddr("Pune");
+		userProfileDTO.setNativeAddr("Pune");
 		userProfileDTO.setOccupation("Engineer");
 		userProfileDTO.setPassword("shiv");
 		userProfileDTO.setUsername("shiv");
