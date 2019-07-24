@@ -83,4 +83,13 @@ public class UserProfile implements Serializable {
 	@Column(name = "native_addr")
 	private String nativeAddr;
 
+	@Override
+	public String toString() {
+		return "UserProfile [userId=" + userId + ", name=" + name + ", occupation=" + occupation + ", gender=" + gender
+				+ ", complexion=" + complexion + ", height=" + height + ", weight=" + weight + ", horoscopeDetails="
+				+ horoscopeDetails + ", dob=" + dob + ", age=" + age + ", caste=" + caste + ", education=" + education
+				+ ", bloodGrp=" + bloodGrp + ", username=" + username + ", currentAddr=" + currentAddr + ", nativeAddr="
+				+ nativeAddr + "]";
+	}
+
 }
