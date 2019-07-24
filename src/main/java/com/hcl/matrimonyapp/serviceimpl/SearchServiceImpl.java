@@ -7,11 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hcl.matrimonyapp.dto.UserProfileDTO;
+import com.hcl.matrimonyapp.dto.UserSearchDTO;
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
-import com.hcl.matrimonyapp.model.UserSearchDTO;
 import com.hcl.matrimonyapp.repository.UserProfileRepository;
 import com.hcl.matrimonyapp.service.SearchService;
+import com.hcl.matrimonyapp.util.UserProfileMapper;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -20,7 +22,7 @@ public class SearchServiceImpl implements SearchService {
 	private UserProfileRepository userProfileRepository;
 
 	@Override
-	public List<UserProfile> searchProfiles( UserSearchDTO userRequest) throws ApplicationException{
+	public List<UserProfileDTO> searchProfiles( UserSearchDTO userRequest) throws ApplicationException{
 		List<UserProfile> userList = new ArrayList<>();
 
 		if (userRequest.getUserId()!= null && userRequest.getUserId() !=0) {
@@ -44,6 +46,12 @@ public class SearchServiceImpl implements SearchService {
 			throw new ApplicationException("Invalid Input");
 		}
 
-		return userList;
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		userList.forEach(u -> {
+			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
+
+		});
+		
+		return userRespList;
 	}
 }

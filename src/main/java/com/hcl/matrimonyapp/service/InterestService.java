@@ -16,6 +16,7 @@ import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
 import com.hcl.matrimonyapp.repository.FavouritesRepository;
 import com.hcl.matrimonyapp.repository.UserProfileRepository;
+import com.hcl.matrimonyapp.util.UserProfileMapper;
 
 @Service
 public class InterestService {
@@ -74,7 +75,7 @@ public class InterestService {
 		}
 		userList.forEach(u -> {
 			
-			userRespList.add(mapUserProfileDTOToResponseList(u));
+			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
 
 		});
 		return userRespList;
@@ -88,28 +89,10 @@ public class InterestService {
 			return userRespList;
 		}
 		userList.forEach(u -> {
-			userRespList.add(mapUserProfileDTOToResponseList(u));
+			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
 
 		});
 		return userRespList;
 	}
-	
-	private UserProfileDTO mapUserProfileDTOToResponseList(UserProfile u) {
-		UserProfileDTO userDTO = new UserProfileDTO();
-		userDTO.setUserId(u.getUserId());
-		userDTO.setName(u.getName());
-		userDTO.setBloodGrp(u.getBloodGrp());
-		userDTO.setCaste(u.getCaste());
-		userDTO.setComplexion(u.getComplexion());
-		userDTO.setCurrentAddr(u.getCurrentAddr());
-		userDTO.setDob(u.getDob());
-		userDTO.setEducation(u.getEducation());
-		userDTO.setGender(u.getGender());
-		userDTO.setHeight(u.getHeight());
-		userDTO.setWeight(u.getWeight());
-		userDTO.setNativeAddr(u.getNativeAddr());
-		userDTO.setOccupation(u.getOccupation());
-		return userDTO;
-		
-	}
+
 }

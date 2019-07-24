@@ -1,4 +1,4 @@
-package com.hcl.matrimonyapp.model;
+package com.hcl.matrimonyapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

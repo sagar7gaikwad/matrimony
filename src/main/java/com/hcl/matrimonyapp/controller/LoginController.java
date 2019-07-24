@@ -42,7 +42,7 @@ public class LoginController {
 		validate(loginDTO);
 		userProfileDTO = loginService.getUserProfile(loginDTO.getUserId(), loginDTO.getPassword());
 		if (null == userProfileDTO) {
-			logger.debug("Invalid credentials are inserted........");
+			logger.error("Invalid credentials are inserted........");
 			throw new ApplicationException("Please enter valid credentials.");
 		}
 		logger.debug("exiting from login method of Login controller.......");
