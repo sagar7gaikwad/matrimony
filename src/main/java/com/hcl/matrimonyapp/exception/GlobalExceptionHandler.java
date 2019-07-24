@@ -27,6 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			details.add(error.getDefaultMessage());
 		}
 		ResponseDTO error = new ResponseDTO("Request Validation Failed", status, details);
+		logger.error(ex);
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 

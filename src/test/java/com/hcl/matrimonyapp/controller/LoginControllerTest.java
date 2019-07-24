@@ -32,7 +32,7 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void loginIfCredentialDetailsAreCorrect() throws ApplicationException {
+	public void testLoginIfCredentialDetailsAreCorrect() throws ApplicationException {
 		loginDTO.setPassword("Jatin@123");
 		loginDTO.setUserId(1L);
 		UserProfileDTO userProfileDTO = new UserProfileDTO();
@@ -41,21 +41,21 @@ public class LoginControllerTest {
 	}
 
 	@Test(expected = ApplicationException.class)
-	public void loginIfPasswordIsNull() throws ApplicationException {
+	public void testLoginIfPasswordIsNull() throws ApplicationException {
 		loginDTO.setPassword(null);
 		loginDTO.setUserId(1L);
 		loginController.login(loginDTO);
 	}
 
 	@Test(expected = ApplicationException.class)
-	public void loginIfUserIdIsNull() throws ApplicationException {
+	public void testLoginIfUserIdIsNull() throws ApplicationException {
 		loginDTO.setPassword("Jatin@123");
 		loginDTO.setUserId(null);
 		loginController.login(loginDTO);
 	}
-	
+
 	@Test(expected = ApplicationException.class)
-	public void loginIfCredentialsAreIncorrect() throws ApplicationException {
+	public void testLoginIfCredentialsAreIncorrect() throws ApplicationException {
 		loginDTO.setPassword("Jtin");
 		loginDTO.setUserId(1L);
 		when(loginService.getUserProfile(loginDTO.getUserId(), loginDTO.getPassword())).thenReturn(null);

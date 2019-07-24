@@ -22,36 +22,34 @@ public class SearchServiceImpl implements SearchService {
 	private UserProfileRepository userProfileRepository;
 
 	@Override
-	public List<UserProfileDTO> searchProfiles( UserSearchDTO userRequest) throws ApplicationException{
+	public List<UserProfileDTO> searchProfiles(UserSearchDTO userRequest) throws ApplicationException {
 		List<UserProfile> userList = new ArrayList<>();
 
-		if (userRequest.getUserId()!= null && userRequest.getUserId() !=0) {
+		if (userRequest.getUserId() != null && userRequest.getUserId() != 0) {
 			Optional<UserProfile> profile = userProfileRepository.findByUserId(userRequest.getUserId());
 			if (profile.isPresent())
 				userList.add(profile.get());
-			
-		}else if (userRequest.getFromAge() != null && userRequest.getToAge() != null) {
-			userList =  userProfileRepository.findAllBetweenAges(userRequest.getFromAge(), userRequest.getToAge());
-			
+
+		} else if (userRequest.getFromAge() != null && userRequest.getToAge() != null) {
+			userList = userProfileRepository.findAllBetweenAges(userRequest.getFromAge(), userRequest.getToAge());
+
 		} else if (userRequest.getFromHeight() != null && userRequest.getToHeight() != null) {
-			userList =  userProfileRepository.findByHeightRangeBetween(userRequest.getFromHeight(), userRequest.getToHeight());
-			
-		}else if (userRequest.getCurrentAddr() != null && userRequest.getNativeAddr() != null
+			userList = userProfileRepository.findByHeightRangeBetween(userRequest.getFromHeight(),
+					userRequest.getToHeight());
+
+		} else if (userRequest.getCurrentAddr() != null && userRequest.getNativeAddr() != null
 				&& userRequest.getEducation() != null && userRequest.getOccupation() != null
 				&& userRequest.getGender() != null) {
-			userList =  userProfileRepository.findByCurrentAddrAndNativeAddrAndEducationAndOccupationAndGender(
+			userList = userProfileRepository.findByCurrentAddrAndNativeAddrAndEducationAndOccupationAndGender(
 					userRequest.getCurrentAddr(), userRequest.getNativeAddr(), userRequest.getEducation(),
 					userRequest.getOccupation(), userRequest.getGender());
-		}else {
+		} else {
 			throw new ApplicationException("Invalid Input");
 		}
 
 		List<UserProfileDTO> userRespList = new ArrayList<>();
-		userList.forEach(u -> {
-			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
+		userList.forEach(u -> userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u)));
 
-		});
-		
 		return userRespList;
 	}
 }

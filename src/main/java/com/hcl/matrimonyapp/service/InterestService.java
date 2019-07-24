@@ -73,11 +73,9 @@ public class InterestService {
 		if (userList == null) {
 			return userRespList;
 		}
-		userList.forEach(u -> {
-			
-			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
+		userList.forEach(u ->
 
-		});
+		userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u)));
 		return userRespList;
 	}
 
@@ -88,10 +86,7 @@ public class InterestService {
 		if (userList == null) {
 			return userRespList;
 		}
-		userList.forEach(u -> {
-			userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u));
-
-		});
+		userList.forEach(u -> userRespList.add(UserProfileMapper.mapUserProfileDTOToResponseList(u)));
 		return userRespList;
 	}
 

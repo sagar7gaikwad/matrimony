@@ -19,24 +19,24 @@ public class LoginServiceImplTest {
 
 	@InjectMocks
 	LoginServiceImpl loginServiceImpl;
-	
+
 	@Mock
 	UserProfileRepository userProfileRepository;
-	
+
 	@Before
 	public void setUp() {
-		
+
 	}
-	
+
 	@Test
-	public void getUserProfileIfCredentialsAreCorrect() {
+	public void testGetUserProfileIfCredentialsAreCorrect() {
 		UserProfile userProfile = new UserProfile();
 		when(userProfileRepository.getUserProfile(1L, "Jatin")).thenReturn(userProfile);
 		Assert.assertNotNull(loginServiceImpl.getUserProfile(1L, "Jatin"));
 	}
-	
+
 	@Test
-	public void getUserProfileIfUserIdIsNull() {
+	public void testGetUserProfileIfUserIdIsNull() {
 		Assert.assertNull(loginServiceImpl.getUserProfile(null, "Jatin"));
 	}
 }

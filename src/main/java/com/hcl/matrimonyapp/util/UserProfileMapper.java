@@ -4,7 +4,11 @@ import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.entity.UserProfile;
 
 public class UserProfileMapper {
-	
+
+	private UserProfileMapper() {
+
+	}
+
 	public static UserProfileDTO mapUserProfileDTOToResponseList(UserProfile u) {
 		UserProfileDTO userDTO = new UserProfileDTO();
 		userDTO.setUserId(u.getUserId());
@@ -21,7 +25,7 @@ public class UserProfileMapper {
 		userDTO.setNativeAddr(u.getNativeAddr());
 		userDTO.setOccupation(u.getOccupation());
 		return userDTO;
-		
+
 	}
 
 }
