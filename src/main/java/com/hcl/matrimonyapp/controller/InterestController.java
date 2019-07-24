@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.hcl.matrimonyapp.exception.ApplicationException;
 
 import com.hcl.matrimonyapp.dto.UserProfileDTO;
-import com.hcl.matrimonyapp.entity.UserProfile;
-
+import com.hcl.matrimonyapp.exception.ApplicationException;
 import com.hcl.matrimonyapp.service.InterestService;
 
 @RestController
