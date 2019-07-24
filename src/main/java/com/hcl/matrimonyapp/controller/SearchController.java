@@ -9,20 +9,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.hcl.matrimonyapp.entity.UserProfile;
+import com.hcl.matrimonyapp.dto.UserProfileDTO;
+import com.hcl.matrimonyapp.dto.UserSearchDTO;
 import com.hcl.matrimonyapp.exception.ApplicationException;
-import com.hcl.matrimonyapp.model.UserSearchDTO;
 import com.hcl.matrimonyapp.serviceimpl.SearchServiceImpl;
 
 @Controller
 public class SearchController {
 
 	@Autowired
-	SearchServiceImpl searchService;
+	SearchServiceImpl searchServiceImpl;
 
 	@PostMapping("/profiles")
-
-	public ResponseEntity<List<UserProfile>> searchProfile( @RequestBody UserSearchDTO userRequest ) throws ApplicationException {
-		return new ResponseEntity<>(searchService.searchProfiles(userRequest),HttpStatus.OK);
+    public ResponseEntity<List<UserProfileDTO>> searchProfile( @RequestBody UserSearchDTO userRequest ) throws ApplicationException {
+		
+		return new ResponseEntity<>(searchServiceImpl.searchProfiles(userRequest),HttpStatus.OK);
 	}
 }
