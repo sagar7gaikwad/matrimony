@@ -21,8 +21,8 @@ public class SearchController {
 	SearchServiceImpl searchService;
 
 	@PostMapping("/profiles")
-	public ResponseEntity<List<UserProfile>> searchProfile(@RequestBody UserSearchDTO userRequest)
-			throws ApplicationException {
-		return new ResponseEntity<>(searchService.searchProfiles(userRequest), HttpStatus.OK);
+
+	public ResponseEntity<List<UserProfile>> searchProfile( @RequestBody UserSearchDTO userRequest ) throws ApplicationException {
+		return new ResponseEntity<>(searchService.searchProfiles(userRequest),HttpStatus.OK);
 	}
 }

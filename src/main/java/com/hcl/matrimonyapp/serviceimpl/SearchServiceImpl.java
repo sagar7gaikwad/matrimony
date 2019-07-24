@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
@@ -24,13 +23,13 @@ public class SearchServiceImpl implements SearchService {
 	public List<UserProfile> searchProfiles( UserSearchDTO userRequest) throws ApplicationException{
 		List<UserProfile> userList = new ArrayList<>();
 
-		if (!StringUtils.isEmpty(userRequest.getUserId())) {
+		if (userRequest.getUserId()!= null && userRequest.getUserId() !=0) {
 			Optional<UserProfile> profile = userProfileRepository.findByUserId(userRequest.getUserId());
 			if (profile.isPresent())
 				userList.add(profile.get());
 			
 		}else if (userRequest.getFromAge() != null && userRequest.getToAge() != null) {
-			userList =  userProfileRepository.findByAgeRangeBetween(userRequest.getFromAge(), userRequest.getToAge());
+			userList =  userProfileRepository.findAllBetweenAges(userRequest.getFromAge(), userRequest.getToAge());
 			
 		} else if (userRequest.getFromHeight() != null && userRequest.getToHeight() != null) {
 			userList =  userProfileRepository.findByHeightRangeBetween(userRequest.getFromHeight(), userRequest.getToHeight());

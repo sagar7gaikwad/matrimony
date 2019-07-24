@@ -31,10 +31,10 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, Long> 
 	
 	public List<UserProfile> findByCurrentAddrAndNativeAddrAndEducationAndOccupationAndGender(String currentAddr,String nativeAddr,String education, String occuption, String gender);
 	
-	@Query("SELECT u FROM UserProfile u WHERE u.age <= :fromAge and u.age >= :toAge")
-	public List<UserProfile> findByAgeRangeBetween(Integer fromAge, Integer toAge);
+	@Query(value = "SELECT * FROM user_profile u WHERE u.age >= :fromAge and u.age<= :toAge", nativeQuery = true)
+	public List<UserProfile> findAllBetweenAges(@Param("fromAge")Integer fromAge, @Param("toAge")Integer toAge);
 	
-	@Query("SELECT u FROM UserProfile u WHERE u.height <= :fromHeight and u.height >= :toHeight")
+	@Query(value= "SELECT u FROM user_profile u WHERE u.height >= :fromHeight and u.height <= :toHeight", nativeQuery = true)
 	public List<UserProfile> findByHeightRangeBetween(Double fromHeight, Double toHeight);
 	
 }

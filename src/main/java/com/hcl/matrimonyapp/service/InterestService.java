@@ -1,6 +1,7 @@
 package com.hcl.matrimonyapp.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.entity.Favourites;
 import com.hcl.matrimonyapp.entity.UserProfile;
 import com.hcl.matrimonyapp.exception.ApplicationException;
@@ -34,13 +36,17 @@ public class InterestService {
 		UserProfile loggedUser = null;
 		UserProfile likedUser = null;
 
-		if (loggedUserOp.isPresent()) {
+		if (!loggedUserOp.isPresent()) {
+			throw new ApplicationException("Logged user not present");
+		} else {
 			loggedUser = loggedUserOp.get();
 		}
-		if (likedUserOp.isPresent()) {
+
+		if (!likedUserOp.isPresent()) {
+			throw new ApplicationException("user that you want to like is not present");
+		} else {
 			likedUser = likedUserOp.get();
 		}
-
 		List<Favourites> fev = loggedUser.getMyFavList();
 		for (Favourites favourites : fev) {
 			if (favourites.getLikedUserProfile().getUserId().equals(likedUser.getUserId())) {
@@ -59,12 +65,59 @@ public class InterestService {
 
 	}
 
-	public List<UserProfile> likedMe(@RequestParam("userId") Long userId) {
-		return userProfileRepository.getByFavMeId(userId);
+	public List<UserProfileDTO> likedMe(@RequestParam("userId") Long userId) {
+
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		List<UserProfile> userList = userProfileRepository.getByFavMeId(userId);
+		if (userList == null) {
+			return userRespList;
+		}
+		userList.forEach(u -> {
+			UserProfileDTO userDTO = new UserProfileDTO();
+			userDTO.setUserId(u.getUserId());
+			userDTO.setName(u.getName());
+			userDTO.setBloodGrp(u.getBloodGrp());
+			userDTO.setCaste(u.getCaste());
+			userDTO.setComplexion(u.getComplexion());
+			userDTO.setCurrentAddr(u.getCurrentAddr());
+			userDTO.setDob(u.getDob());
+			userDTO.setEducation(u.getEducation());
+			userDTO.setGender(u.getGender());
+			userDTO.setHeight(u.getHeight());
+			userDTO.setWeight(u.getWeight());
+			userDTO.setNavtiveAddr(u.getNativeAddr());
+			userDTO.setOccupation(u.getOccupation());
+			userRespList.add(userDTO);
+
+		});
+		return userRespList;
 	}
 
-	public List<UserProfile> likedByMe(@RequestParam("userId") Long userId) {
-		return userProfileRepository.getByMyFavId(userId);
-	}
+	public List<UserProfileDTO> likedByMe(@RequestParam("userId") Long userId) {
 
+		List<UserProfileDTO> userRespList = new ArrayList<>();
+		List<UserProfile> userList = userProfileRepository.getByMyFavId(userId);
+		if (userList == null) {
+			return userRespList;
+		}
+		userList.forEach(u -> {
+			UserProfileDTO userDTO = new UserProfileDTO();
+			userDTO.setUserId(u.getUserId());
+			userDTO.setName(u.getName());
+			userDTO.setBloodGrp(u.getBloodGrp());
+			userDTO.setCaste(u.getCaste());
+			userDTO.setComplexion(u.getComplexion());
+			userDTO.setCurrentAddr(u.getCurrentAddr());
+			userDTO.setDob(u.getDob());
+			userDTO.setEducation(u.getEducation());
+			userDTO.setGender(u.getGender());
+			userDTO.setHeight(u.getHeight());
+			userDTO.setWeight(u.getWeight());
+			userDTO.setNavtiveAddr(u.getNativeAddr());
+			userDTO.setOccupation(u.getOccupation());
+			userRespList.add(userDTO);
+
+		});
+		return userRespList;
+	}
 }

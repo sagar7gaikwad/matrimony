@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.hcl.matrimonyapp.exception.ApplicationException;
 
+import com.hcl.matrimonyapp.dto.UserProfileDTO;
 import com.hcl.matrimonyapp.entity.UserProfile;
 
 import com.hcl.matrimonyapp.service.InterestService;
@@ -36,13 +37,13 @@ public class InterestController {
 	
 	
 	@GetMapping(value="/likedme")
-	public ResponseEntity<List<UserProfile>> likedMe(@RequestParam("userId") Long userId){
-		List<UserProfile> userList = interestService.likedMe(userId);
+	public ResponseEntity<List<UserProfileDTO>> likedMe(@RequestParam("userId") Long userId){
+		List<UserProfileDTO> userList = interestService.likedMe(userId);
 		return new ResponseEntity<>(userList,HttpStatus.OK) ;
 	}
 	@GetMapping(value="/like")
-	public ResponseEntity<List<UserProfile>> likedByMe(@RequestParam("userId") Long userId){
-		List<UserProfile> userList = interestService.likedByMe(userId);
+	public ResponseEntity<List<UserProfileDTO>> likedByMe(@RequestParam("userId") Long userId){
+		List<UserProfileDTO> userList = interestService.likedByMe(userId);
 		return new ResponseEntity<>(userList,HttpStatus.OK) ;
 	}
 	
