@@ -1,5 +1,6 @@
 package com.hcl.matrimonyapp.controller;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import com.hcl.matrimonyapp.serviceimpl.RegisterServiceImpl;
 @RestController
 public class RegisterController {
 
+	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class); 
+	
 	@Autowired
 	private RegisterServiceImpl registerServiceImpl;
 	
@@ -27,8 +30,12 @@ public class RegisterController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Object> registerUser(@RequestBody UserProfileDTO userProfileDTO) throws ApplicationException {
+		logger.info("Received register user request.");
 		validateUser(userProfileDTO);
-		return new ResponseEntity<>(registerServiceImpl.registerUser(userProfileDTO), HttpStatus.OK);
+		logger.info("Register user request validated sucessfully.");
+		String registerUserStatus = registerServiceImpl.registerUser(userProfileDTO);
+		logger.info("Returning sucessful register user response.");
+		return new ResponseEntity<>(registerUserStatus, HttpStatus.OK);
 	}
 
 	/*
